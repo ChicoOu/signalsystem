@@ -16,16 +16,20 @@ def x(t):
         return 0
     
     
-def drawx():
-    t = np.arange(-2, 3, 0.05)
+def drawx(t, offset, reverse):
     y = []
     for i in t:
+        if(reverse):
+            i = -i
         y.append(x(i))
         
+    if (offset != 0):
+        t = t - offset
     plt.plot(t,y)
+
+def cfgAndShow():
     plt.xticks(np.arange(-3,3,1))
     plt.yticks([-3, 3])
-
     ax = plt.gca()
     ax.spines['right'].set_color('none')
     ax.spines['top'].set_color('none')
@@ -36,7 +40,12 @@ def drawx():
     plt.show()
 
 def main():
-    drawx()
+    t = np.arange(-2, 3, 0.05)
+    drawx(t, 0, False)
+    drawx(t, 0, True)
+    #t = np.arange(-2, 3, 0.05)
+    drawx(t, -2, False)
+    cfgAndShow()
 
 
 if __name__ == '__main__':
